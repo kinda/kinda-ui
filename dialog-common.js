@@ -80,13 +80,13 @@ var DialogCommon = {
           function(buttonNumber) {
             var result;
             if (buttonNumber === 1)
-              result = options.primaryButton.value;
-            else if (buttonNumber === 2)
               result = options.secondaryButton.value;
+            else if (buttonNumber === 2)
+              result = options.primaryButton.value;
             callback(null, result);
           },
           options.title,
-          [options.primaryButton.label, options.secondaryButton.label]
+          [options.secondaryButton.label, options.primaryButton.label]
         );
       } else {
         navigator.notification.alert(
