@@ -6,7 +6,7 @@ let Audio = require('./audio');
 let DialogCommon = require('./dialog-common');
 let DialogHelpers = require('./dialog-helpers');
 let English = require('./locales/english');
-let French = require('./locles/french');
+let French = require('./locales/french');
 
 let KindaAbstractUI = KindaObject.extend('KindaAbstractUI', function() {
   this.include(Audio);
