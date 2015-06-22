@@ -1,5 +1,6 @@
 'use strict';
 
+let _ = require('lodash');
 let KindaObject = require('kinda-object');
 let KindaLocalizer = require('kinda-localizer');
 let Audio = require('./audio');
@@ -25,8 +26,17 @@ let KindaAbstractUI = KindaObject.extend('KindaAbstractUI', function() {
     this.DialogCommon = DialogCommon.inject(this);
   };
 
-  this.getLocaleValue = function(key) {
-    return this.customLocale[key] || this.locale[key];
+  this.getLocaleValue = _.memoize(function(key) {
+    return (
+      this._getLocaleValue(this.customLocale, key) ||
+      this._getLocaleValue(this.locale, key)
+    );
+  });
+
+  this._getLocaleValue = function(locale, key) {
+    let value = locale[key];
+    if (_.isFunction(value)) value = value.bind(locale);
+    return value;
   };
 });
 
