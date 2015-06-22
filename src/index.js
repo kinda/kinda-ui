@@ -6,8 +6,9 @@ let KindaLocalizer = require('kinda-localizer');
 let Audio = require('./audio');
 let DialogCommon = require('./dialog-common');
 let DialogHelpers = require('./dialog-helpers');
-let English = require('./locales/english');
-let French = require('./locales/french');
+let EnGB = require('./locales/en-gb');
+let EnUS = require('./locales/en-us');
+let FrFR = require('./locales/fr-fr');
 
 let KindaAbstractUI = KindaObject.extend('KindaAbstractUI', function() {
   this.include(Audio);
@@ -16,8 +17,9 @@ let KindaAbstractUI = KindaObject.extend('KindaAbstractUI', function() {
   this.creator = function(options = {}) {
     let localizer = KindaLocalizer.create({
       locales: [
-        English.create(),
-        French.create()
+        EnGB.create(),
+        EnUS.create(),
+        FrFR.create()
       ]
     });
     this.customLocale = options.locale || {};

@@ -2,7 +2,7 @@
 
 let KindaLocalizer = require('kinda-localizer');
 
-let English = KindaLocalizer.English.extend('KindaLocalizer', {
+let EnGB = KindaLocalizer.EnGB.extend('EnGB', {
   alertDialogTitle: 'Alert',
   confirmDialogTitle: 'Confirmation',
   promptDialogTitle: 'Prompt',
@@ -10,7 +10,7 @@ let English = KindaLocalizer.English.extend('KindaLocalizer', {
   cancelButton: 'Cancel',
   unknownErrorMessage: 'An error occured.',
   missingOrInvalidInformationMessage: 'Some information is missing or invalid.',
-  datePickerFormat: 'mm/dd/yyyy'
+  datePickerFormat: 'dd/mm/yyyy'
 });
 
-module.exports = English;
+module.exports = EnGB;
