@@ -2,7 +2,7 @@
 
 let KindaLocalizer = require('kinda-localizer');
 
-let French = KindaLocalizer.French.extend('KindaLocalizer', {
+let FrFR = KindaLocalizer.FrFR.extend('FrFR', {
   alertDialogTitle: 'Alerte',
   confirmDialogTitle: 'Confirmation',
   promptDialogTitle: 'Demande',
@@ -13,4 +13,4 @@ let French = KindaLocalizer.French.extend('KindaLocalizer', {
   datePickerFormat: 'dd/mm/yyyy'
 });
 
-module.exports = French;
+module.exports = FrFR;
