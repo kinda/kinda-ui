@@ -55,13 +55,16 @@ let DialogCommon = {
         },
 
         _dialog(options) {
-          return callback => {
+          return new Promise((resolve, reject) => {
+            let callback = function(err, res) {
+              if (err) reject(err); else resolve(res);
+            };
             if (window.DEVICE_TYPE === 'cordova') {
               this._cordovaDialog(options, callback);
             } else {
               this._browserDialog(options, callback);
             }
-          };
+          });
         },
 
         _browserDialog(options, callback) {
