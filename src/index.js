@@ -15,27 +15,24 @@ let KindaAbstractUI = KindaObject.extend('KindaAbstractUI', function() {
   this.include(DialogHelpers);
 
   this.creator = function(options = {}) {
-    let localizer = KindaLocalizer.create({
-      locales: [
-        EnGB.create(),
-        EnUS.create(),
-        FrFR.create()
-      ]
-    });
-    this.customLocale = options.locale || {};
-    this.locale = localizer.getLocale(this.customLocale.code);
+    this.locale = options.locale;
+
+    let localizer = KindaLocalizer.create([EnGB, EnUS, FrFR]);
+    let localCode = options.localeCode || (this.locale && this.locale.class.code);
+    this.defaultLocale = localizer.createLocale(localCode);
 
     this.DialogCommon = DialogCommon.inject(this);
   };
 
-  this.getLocaleValue = _.memoize(function(key) {
+  this.getLocaleValue = function(key) {
     return (
-      this._getLocaleValue(this.customLocale, key) ||
-      this._getLocaleValue(this.locale, key)
+      this._getLocaleValue(this.locale, key) ||
+      this._getLocaleValue(this.defaultLocale, key)
     );
-  });
+  };
 
   this._getLocaleValue = function(locale, key) {
+    if (!locale) return undefined;
     let value = locale[key];
     if (_.isFunction(value)) value = value.bind(locale);
     return value;
